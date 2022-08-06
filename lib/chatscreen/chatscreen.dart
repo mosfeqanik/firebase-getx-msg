@@ -1,10 +1,10 @@
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebasemessagegetx/mainpage/mainpage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'chatscreen-controller.dart';
+import 'components/chatmsgbuble.dart';
 
 class ChatScreen extends StatelessWidget {
   final chatscreenController controller = Get.put(chatscreenController());
@@ -28,21 +28,10 @@ class ChatScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                height: height/1.26,
-                child: ListView.builder(
-                  itemCount: 20,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    print(index);
-                    return Container(
-                      height: 40,
-                      color: (index % 2 == 0) ? Colors.red : Colors.greenAccent,
-                    );
-                  },
-                ),
+              ChatBubble(),
+              SizedBox(
+                height: 10,
               ),
-              SizedBox(height: 10,),
               Container(
                 height: 50,
                 padding: EdgeInsets.only(bottom: 10),

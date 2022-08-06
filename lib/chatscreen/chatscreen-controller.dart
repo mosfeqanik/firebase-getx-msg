@@ -8,12 +8,18 @@ class chatscreenController extends GetxController{
   final fireStore = FirebaseFirestore.instance;
   final auth = FirebaseAuth.instance;
   var userEmail = ''.obs;
+  late final Stream<QuerySnapshot> usersStream;
+  bool isFromMe = true;
 
+  String? loggedInEmail = FirebaseAuth.instance.currentUser?.email;
+  Map<String, dynamic>? data;
   @override
   void onInit() {
     // TODO: implement onInit
     getCurrentUser();
     getMessages();
+    usersStream =
+    FirebaseFirestore.instance.collection('messages').snapshots();
     super.onInit();
   }
 
@@ -26,12 +32,17 @@ class chatscreenController extends GetxController{
   }
 
   void getMessages() async {
-    final messages = await fireStore.collection('messages').doc();
-    await for(var snapshots in fireStore.collection('messages').snapshots()){
-      for(var messages in snapshots.docs){
-        print(messages.data());
-      }
-    }
+    // final messages = await fireStore.collection('messages').doc();
+    // usersStream =
+    //     FirebaseFirestore.instance.collection('messages').snapshots()
+    //
+    //
+    // print("hello world ${messages}");
+    // await for(var snapshots in fireStore.collection('messages').snapshots()){
+    //   for(var messages in snapshots.docs){
+    //     print(messages.data());
+    //   }
+    // }
 
   }
 
