@@ -9,7 +9,7 @@ import 'chatscreen-controller.dart';
 class ChatScreen extends StatelessWidget {
   final chatscreenController controller = Get.put(chatscreenController());
   final height = Get.height;
-  final fireStore = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
     print(height);
@@ -78,10 +78,7 @@ class ChatScreen extends StatelessWidget {
                       onTap: (){
                         print(controller.sendMsgTextController.text);
 
-                        fireStore.collection('messages').add({
-                          'msgSender':controller.userEmail.value,
-                          'msgText':controller.sendMsgTextController.text,
-                        });
+                        controller.sendMsgCollection();
                         controller.sendMsgTextController.clear();
 
                       },
