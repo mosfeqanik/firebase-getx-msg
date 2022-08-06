@@ -47,6 +47,7 @@ class SendMsgBar extends StatelessWidget {
           GestureDetector(
             onTap: (){
               print(controller.sendMsgTextController.text);
+
               controller.sendMsgTextController.clear();
             },
             child: Container(
